@@ -118,7 +118,7 @@ public class DebugCommand implements CommandExecutor {
                 ItemMeta meta = item.getItemMeta();
                 meta.displayName(Component.text("유리 만연필")
                                 .color(NamedTextColor.GOLD));
-                meta.setCustomModelData(CustomSkillPlugin.ITEM_MODEL_DATA);
+                meta.setCustomModelData(1001);
                 item.setItemMeta(meta);
                 return item;
         }
