@@ -16,16 +16,16 @@ import java.util.UUID;
 public class GaugeManager {
 
     private final CustomSkillPlugin plugin;
-    private final Map<UUID, Integer> gaugeMap = new HashMap<>();
-    private final Map<UUID, BukkitTask> taskMap = new HashMap<>();
+    private final Map<UUID, Integer>    gaugeMap = new HashMap<>();
+    private final Map<UUID, BukkitTask> taskMap  = new HashMap<>();
 
     public static final int MAX_GAUGE = 10;
 
     // 리소스팩 font/default.json 에서 매핑한 게이지 프레임 유니코드
     // GIF 프레임 수에 맞게 수정하세요
     private static final String[] GAUGE_CHARS = {
-            "\uE100", "\uE101", "\uE102", "\uE103", "\uE104",
-            "\uE105", "\uE106", "\uE107", "\uE108", "\uE109", "\uE10A"
+        "\uE100", "\uE101", "\uE102", "\uE103", "\uE104",
+        "\uE105", "\uE106", "\uE107", "\uE108", "\uE109", "\uE10A"
     };
 
     public GaugeManager(CustomSkillPlugin plugin) {
@@ -34,8 +34,7 @@ public class GaugeManager {
 
     public void startCharging(Player player) {
         UUID id = player.getUniqueId();
-        if (taskMap.containsKey(id))
-            return;
+        if (taskMap.containsKey(id)) return;
 
         gaugeMap.put(id, 0);
         showFrame(player, 0);
@@ -53,8 +52,7 @@ public class GaugeManager {
                     // 게이지 MAX → 원거리 스킬 발동
                     Skill_3.fire(player, plugin);
                     new BukkitRunnable() {
-                        @Override
-                        public void run() {
+                        @Override public void run() {
                             gaugeMap.remove(id);
                             clearFrame(player);
                         }
@@ -69,8 +67,7 @@ public class GaugeManager {
     public void stopCharging(Player player) {
         UUID id = player.getUniqueId();
         BukkitTask t = taskMap.remove(id);
-        if (t != null)
-            t.cancel();
+        if (t != null) t.cancel();
         gaugeMap.remove(id);
         clearFrame(player);
     }
@@ -88,9 +85,10 @@ public class GaugeManager {
     private void showFrame(Player player, int frame) {
         int idx = Math.min(frame, GAUGE_CHARS.length - 1);
         player.sendActionBar(
-                Component.text(GAUGE_CHARS[idx])
-                        .font(Key.key("minecraft", "default"))
-                        .color(TextColor.color(0xFFFFFF)));
+            Component.text(GAUGE_CHARS[idx])
+                .font(Key.key("minecraft", "default"))
+                .color(TextColor.color(0xFFFFFF))
+        );
     }
 
     private void clearFrame(Player player) {

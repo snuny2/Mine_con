@@ -1,9 +1,9 @@
 {
+	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
-	"parent": "item/handheld",
 	"textures": {
-		"0": "item/sonetto", 
-		"particle": "item/sonetto"
+		"0": "block/texture",
+		"particle": "block/texture"
 	},
 	"elements": [
 		{
@@ -188,5 +188,11 @@
 				"down": {"uv": [7.15625, 9, 7, 9.15625], "texture": "#0"}
 			}
 		}
-	]
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [56.3, 5.62, -25.47],
+			"translation": [0.5, 2, 5]
+		}
+	}
 }
