@@ -1,15 +1,15 @@
 {
   "model": {
     "type": "minecraft:condition",
-    "property": "custom_model_data",
+    "property": "minecraft:custom_model_data",
     "index": 0,
     "on_false": {
       "type": "minecraft:model",
-      "model": "item/diamond_sword"
+      "model": "minecraft:item/diamond_sword"
     },
     "on_true": {
       "type": "minecraft:model",
-      "model": "item/sonetto"
+      "model": "minecraft:item/sonetto"
     }
   }
 }
