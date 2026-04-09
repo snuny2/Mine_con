@@ -1,9 +1,7 @@
 {
-	"format_version": "1.21.11",
-	"credit": "Made with Blockbench",
-	"textures": {
-		"0": "block/texture",
-		"particle": "block/texture"
+	"parent": "item/handheld",
+  	"textures": {
+    	"layer0": "minecraft:item/sonetto"
 	},
 	"elements": [
 		{
