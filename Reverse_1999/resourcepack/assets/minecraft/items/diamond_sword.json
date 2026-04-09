@@ -1,15 +1,19 @@
 {
   "model": {
-    "type": "minecraft:condition",
+    "type": "minecraft:select",
     "property": "minecraft:custom_model_data",
-    "index": 0,
-    "on_false": {
+    "cases": [
+      {
+        "when": 1001,
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/sonetto"
+        }
+      }
+    ],
+    "fallback": {
       "type": "minecraft:model",
       "model": "minecraft:item/diamond_sword"
-    },
-    "on_true": {
-      "type": "minecraft:model",
-      "model": "minecraft:item/sonetto"
     }
   }
 }
