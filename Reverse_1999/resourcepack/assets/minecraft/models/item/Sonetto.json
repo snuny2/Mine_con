@@ -1,9 +1,8 @@
 {
-	"format_version": "1.21.11",
+	"format_version": "1.21.8",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "block/texture",
-		"particle": "block/texture"
+		"layer0": "item/sonetto"
 	},
 	"elements": [
 		{
