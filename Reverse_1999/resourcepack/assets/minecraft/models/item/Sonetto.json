@@ -1,7 +1,9 @@
 {
-	"parent": "item/handheld",
-  	"textures": {
-    	"layer0": "item/sonetto"
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "block/texture",
+		"particle": "block/texture"
 	},
 	"elements": [
 		{
