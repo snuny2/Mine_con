@@ -19,22 +19,22 @@ import java.util.List;
 
 public class Skill_2 {
 
-    private static final int  BUFF_SEC      = 5;
-    private static final int  BEAM_FRAMES   = 22;
-    private static final int  CIRCLE_FRAMES = 8;
-    private static final int  BUFF_FRAMES   = 7;
-    private static final long BEAM_TICKS    = 1L;
-    private static final long CIRCLE_TICKS  = 4L;
-    private static final long BUFF_TICKS    = 2L; // 7프레임 × 2틱 = 14틱 = 0.7초
+    private static final int BUFF_SEC = 5;
+    private static final int BEAM_FRAMES = 22;
+    private static final int CIRCLE_FRAMES = 8;
+    private static final int BUFF_FRAMES = 7;
+    private static final long BEAM_TICKS = 1L;
+    private static final long CIRCLE_TICKS = 4L;
+    private static final long BUFF_TICKS = 2L; // 7프레임 × 2틱 = 14틱 = 0.7초
 
     // beam+circle 총 재생 시간: 약 30틱(1.5초) 후 버프 이펙트 시작
-    private static final long BUFF_DELAY    = 30L;
+    private static final long BUFF_DELAY = 30L;
 
     public static void cast(Player player, CustomSkillPlugin plugin) {
         player.addPotionEffect(new PotionEffect(
-            PotionEffectType.STRENGTH, BUFF_SEC * 20, 0, false, true, true));
+                PotionEffectType.STRENGTH, BUFF_SEC * 20, 0, false, true, true));
         player.addPotionEffect(new PotionEffect(
-            PotionEffectType.RESISTANCE, BUFF_SEC * 20, 0, false, true, true));
+                PotionEffectType.RESISTANCE, BUFF_SEC * 20, 0, false, true, true));
 
         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 0.8f, 1.5f);
 
@@ -43,38 +43,41 @@ public class Skill_2 {
         base.setPitch(0f);
 
         Location circlePos = base.clone().add(0, 0.05, 0);
-        Location beamPos   = base.clone().add(0, 3.0, 0);
+        Location beamPos = base.clone().add(0, 3.0, 0);
 
         // ── Circle ──────────────────────────────────────────────
         ItemDisplay circleDisplay = circlePos.getWorld()
-            .spawn(circlePos, ItemDisplay.class, d -> {
-                d.setBillboard(Display.Billboard.FIXED);
-                d.setTransformation(new Transformation(
-                    new Vector3f(0, 0, 0),
-                    new AxisAngle4f((float) Math.toRadians(-90), 1, 0, 0),
-                    new Vector3f(4, 4, 1),
-                    new AxisAngle4f(0, 0, 1, 0)
-                ));
-            });
+                .spawn(circlePos, ItemDisplay.class, d -> {
+                    d.setBillboard(Display.Billboard.FIXED);
+                    d.setTransformation(new Transformation(
+                            new Vector3f(0, 0, 0),
+                            new AxisAngle4f((float) Math.toRadians(-90), 1, 0, 0),
+                            new Vector3f(10, 10, 1),
+                            new AxisAngle4f(0, 0, 1, 0)));
+                });
 
         // ── Beam ────────────────────────────────────────────────
         ItemDisplay beamDisplay = beamPos.getWorld()
-            .spawn(beamPos, ItemDisplay.class, d -> {
-                d.setBillboard(Display.Billboard.FIXED);
-                d.setTransformation(new Transformation(
-                    new Vector3f(0, -1.5f, 0),
-                    new AxisAngle4f(0, 0, 1, 0),
-                    new Vector3f(1.5f, 3f, 1.5f),
-                    new AxisAngle4f(0, 0, 1, 0)
-                ));
-            });
+                .spawn(beamPos, ItemDisplay.class, d -> {
+                    d.setBillboard(Display.Billboard.FIXED);
+                    d.setTransformation(new Transformation(
+                            new Vector3f(0, -1.5f, 0),
+                            new AxisAngle4f(0, 0, 1, 0),
+                            new Vector3f(1.5f, 3f, 1.5f),
+                            new AxisAngle4f(0, 0, 1, 0)));
+                });
 
         // Circle 애니메이션
         new BukkitRunnable() {
             int frame = 0;
+
             @Override
             public void run() {
-                if (frame >= CIRCLE_FRAMES) { circleDisplay.remove(); cancel(); return; }
+                if (frame >= CIRCLE_FRAMES) {
+                    circleDisplay.remove();
+                    cancel();
+                    return;
+                }
                 setModel(circleDisplay, String.format("skill2_circle_%02d", frame));
                 frame++;
             }
@@ -83,9 +86,14 @@ public class Skill_2 {
         // Beam 애니메이션
         new BukkitRunnable() {
             int frame = 0;
+
             @Override
             public void run() {
-                if (frame >= BEAM_FRAMES) { beamDisplay.remove(); cancel(); return; }
+                if (frame >= BEAM_FRAMES) {
+                    beamDisplay.remove();
+                    cancel();
+                    return;
+                }
                 setModel(beamDisplay, String.format("skill2_beam_%02d", frame));
                 frame++;
             }
@@ -102,19 +110,19 @@ public class Skill_2 {
 
                 // 플레이어 머리 위 0.5블록
                 ItemDisplay buffDisplay = buffPos.getWorld()
-                    .spawn(buffPos.clone().add(0, 2.5, 0), ItemDisplay.class, d -> {
-                        d.setBillboard(Display.Billboard.VERTICAL); // 항상 카메라 방향 바라봄
-                        d.setTransformation(new Transformation(
-                            new Vector3f(0, 0, 0),
-                            new AxisAngle4f(0, 0, 1, 0),
-                            new Vector3f(1.5f, 3f, 1f), // 세로로 표시
-                            new AxisAngle4f(0, 0, 1, 0)
-                        ));
-                    });
+                        .spawn(buffPos.clone().add(0, 2.5, 0), ItemDisplay.class, d -> {
+                            d.setBillboard(Display.Billboard.VERTICAL); // 항상 카메라 방향 바라봄
+                            d.setTransformation(new Transformation(
+                                    new Vector3f(0, 0, 0),
+                                    new AxisAngle4f(0, 0, 1, 0),
+                                    new Vector3f(1.5f, 3f, 1f), // 세로로 표시
+                                    new AxisAngle4f(0, 0, 1, 0)));
+                        });
 
                 // 버프 이펙트 애니메이션
                 new BukkitRunnable() {
                     int frame = 0;
+
                     @Override
                     public void run() {
                         if (frame >= BUFF_FRAMES) {
@@ -130,8 +138,8 @@ public class Skill_2 {
         }.runTaskLater(plugin, BUFF_DELAY);
 
         player.sendMessage(
-            Component.text("✨ 힘 1 + 저항 1 — " + BUFF_SEC + "초 부여!")
-                .color(NamedTextColor.GREEN));
+                Component.text("✨ 힘 1 + 저항 1 — " + BUFF_SEC + "초 부여!")
+                        .color(NamedTextColor.GREEN));
     }
 
     private static void setModel(ItemDisplay display, String modelString) {
