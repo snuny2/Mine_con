@@ -28,7 +28,7 @@ public class Skill_2 {
         player.showTitle(Title.title(
                 Component.empty(),
                 Component.text(OVERLAY_CHAR)
-                        .font(Key.key("minecraft", "skill_font"))
+                        .font(Key.key("minecraft", "default"))
                         .color(TextColor.color(0xFFFFFF)),
                 Title.Times.times(
                         Duration.ofMillis(100),

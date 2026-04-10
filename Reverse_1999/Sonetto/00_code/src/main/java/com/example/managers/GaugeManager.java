@@ -96,7 +96,7 @@ public class GaugeManager {
     private void showFrame(Player player, int frame) {
         player.sendActionBar(
             Component.text(GAUGE_CHARS[frame])
-                .font(Key.key("minecraft", "skill_font"))
+                .font(Key.key("minecraft", "default"))
                 .color(TextColor.color(0xFFFFFF))
         );
     }
@@ -105,7 +105,7 @@ public class GaugeManager {
     private void showSwingOverlay(Player player) {
         player.sendActionBar(
             Component.text(SWING_CHAR)
-                .font(Key.key("minecraft", "skill_font"))
+                .font(Key.key("minecraft", "default"))
                 .color(TextColor.color(0xFFFFFF))
         );
     }
