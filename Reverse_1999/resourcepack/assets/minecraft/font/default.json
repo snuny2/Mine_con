@@ -1,264 +1,286 @@
 {
   "providers": [
     {
+      "type": "reference",
+      "id": "minecraft:include/default"
+    },
+    {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_00.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE100"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_01.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE101"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_02.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE102"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_03.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE103"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_04.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE104"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_05.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE105"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_06.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE106"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_07.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE107"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_08.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE108"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_09.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE109"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_10.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE10A"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_11.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE10B"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_12.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE10C"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_13.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE10D"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_14.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE10E"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_15.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE10F"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_16.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE110"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_17.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE111"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_18.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE112"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_19.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE113"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_20.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE114"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_21.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE115"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_22.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE116"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_23.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE117"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_24.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE118"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_25.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE119"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_26.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE11A"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_27.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE11B"
+        ""
       ]
     },
     {
       "type": "bitmap",
       "file": "minecraft:gui/gauge/gauge_28.png",
-      "ascent": 14,
-      "height": 30,
+      "ascent": 20,
+      "height": 48,
       "chars": [
-        "\\uE11C"
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/projectile_1.png",
+      "ascent": 20,
+      "height": 48,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/projectile_2.png",
+      "ascent": 20,
+      "height": 48,
+      "chars": [
+        ""
       ]
     },
     {
@@ -267,7 +289,7 @@
       "ascent": 80,
       "height": 160,
       "chars": [
-        "\\uE200"
+        ""
       ]
     }
   ]

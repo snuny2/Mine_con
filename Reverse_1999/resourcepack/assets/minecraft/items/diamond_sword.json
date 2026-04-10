@@ -4,10 +4,24 @@
     "property": "minecraft:custom_model_data",
     "cases": [
       {
-        "when": 1001,
+        "when": "sonetto",
         "model": {
           "type": "minecraft:model",
           "model": "minecraft:item/sonetto"
+        }
+      },
+      {
+        "when": "projectile_1",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/projectile_1"
+        }
+      },
+      {
+        "when": "projectile_2",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/projectile_2"
         }
       }
     ],

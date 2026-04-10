@@ -23,19 +23,15 @@ public class Skill_3 {
     private static final int    WEAKNESS_SEC = 3;
     private static final double SPEED        = 0.5;
 
-    /** 게이지 완료 → 투사체1 발사 → 즉시 투사체2 발사 */
     public static void fire(Player player, CustomSkillPlugin plugin) {
-        // 투사체1 (projectile_1 모델)
-        fireProjectile(player, plugin, CustomSkillPlugin.PROJ_1_MODEL, 1, () -> {
-            // 투사체1 끝나면 바로 투사체2
+        fireProjectile(player, plugin, CustomSkillPlugin.PROJ_1_MODEL, 1, () ->
             new BukkitRunnable() {
                 @Override public void run() {
-                    fireProjectile(player, plugin, CustomSkillPlugin.PROJ_2_MODEL, 2, () -> {
-                        applyCooldown(player, plugin);
-                    });
+                    fireProjectile(player, plugin, CustomSkillPlugin.PROJ_2_MODEL, 2, () ->
+                        applyCooldown(player, plugin));
                 }
-            }.runTaskLater(plugin, 2L);
-        });
+            }.runTaskLater(plugin, 2L)
+        );
     }
 
     private static void fireProjectile(Player player, CustomSkillPlugin plugin,
@@ -43,24 +39,23 @@ public class Skill_3 {
                                         Runnable onComplete) {
         player.playSound(player.getLocation(), Sound.ENTITY_ARROW_SHOOT, 1f, 0.8f);
 
-        Location start = player.getEyeLocation();
-        Vector   dir   = start.getDirection().normalize();
+        Location eyeLoc = player.getEyeLocation();
+        Vector   dir    = eyeLoc.getDirection().normalize();
 
-        // ArmorStand 생성 - 투사체 모델 장착
+        // ArmorStand - small(false)로 해야 head가 정확한 위치에 표시됨
         ArmorStand stand = player.getWorld()
-            .spawn(start, ArmorStand.class, as -> {
+            .spawn(eyeLoc, ArmorStand.class, as -> {
                 as.setVisible(false);
                 as.setGravity(false);
-                as.setSmall(true);
+                as.setSmall(false);   // head 위치 정확도를 위해 false
                 as.setMarker(true);
                 as.setInvulnerable(true);
                 as.setCustomNameVisible(false);
 
-                // 각 투사체 모델 문자열로 아이템 생성
                 ItemStack projItem = new ItemStack(Material.DIAMOND_SWORD);
                 ItemMeta  meta     = projItem.getItemMeta();
                 CustomModelDataComponent cmd = meta.getCustomModelDataComponent();
-                cmd.setStrings(List.of(modelString)); // "projectile_1" or "projectile_2"
+                cmd.setStrings(List.of(modelString));
                 meta.setCustomModelDataComponent(cmd);
                 projItem.setItemMeta(meta);
                 as.getEquipment().setHelmet(projItem);
@@ -80,16 +75,16 @@ public class Skill_3 {
                     return;
                 }
 
-                Location pos = start.clone().add(dir.clone().multiply(traveled));
-                stand.teleport(pos);
+                // 투사체 위치 - ArmorStand head가 눈높이에 오도록 -1.8 보정
+                Location pos = eyeLoc.clone().add(dir.clone().multiply(traveled));
+                // head 슬롯은 ArmorStand 키 1.8 위에 있으므로 1.8 내려서 배치
+                stand.teleport(pos.clone().subtract(0, 1.8, 0));
 
-                // 꼬리 파티클 (가볍게)
-                player.getWorld().spawnParticle(
-                    Particle.ENCHANTED_HIT, pos, 2, 0.05, 0.05, 0.05, 0.01);
+                // 파티클 없음 (이미지로 대체)
 
-                // 충돌 검사
+                // 충돌 검사 - head 위치 기준
                 for (Entity entity : player.getWorld()
-                        .getNearbyEntities(pos, 0.7, 0.7, 0.7)) {
+                        .getNearbyEntities(pos, 0.8, 0.8, 0.8)) {
                     if (!(entity instanceof LivingEntity)) continue;
                     if (entity.equals(player)) continue;
                     if (entity.equals(stand))  continue;
@@ -100,6 +95,7 @@ public class Skill_3 {
                         PotionEffectType.WEAKNESS,
                         WEAKNESS_SEC * 20, 0, false, true, true));
 
+                    // 피격 파티클
                     target.getWorld().spawnParticle(
                         Particle.POOF, target.getLocation().add(0, 1, 0),
                         15, 0.3, 0.3, 0.3, 0.1);
@@ -122,7 +118,6 @@ public class Skill_3 {
             }
         }.runTaskTimer(plugin, 0L, 1L);
 
-        // 사거리 초과 시 콜백
         new BukkitRunnable() {
             @Override public void run() {
                 if (!stand.isDead()) stand.remove();
