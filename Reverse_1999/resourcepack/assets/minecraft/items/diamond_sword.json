@@ -233,6 +233,55 @@
           "type": "minecraft:model",
           "model": "minecraft:item/skill2_circle_07"
         }
+      },
+      {
+        "when": "skill2_buff_00",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_buff_00"
+        }
+      },
+      {
+        "when": "skill2_buff_01",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_buff_01"
+        }
+      },
+      {
+        "when": "skill2_buff_02",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_buff_02"
+        }
+      },
+      {
+        "when": "skill2_buff_03",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_buff_03"
+        }
+      },
+      {
+        "when": "skill2_buff_04",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_buff_04"
+        }
+      },
+      {
+        "when": "skill2_buff_05",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_buff_05"
+        }
+      },
+      {
+        "when": "skill2_buff_06",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_buff_06"
+        }
       }
     ],
     "fallback": {

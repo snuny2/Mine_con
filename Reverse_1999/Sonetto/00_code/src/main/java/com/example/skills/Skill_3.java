@@ -42,12 +42,12 @@ public class Skill_3 {
         Location eyeLoc = player.getEyeLocation();
         Vector   dir    = eyeLoc.getDirection().normalize();
 
-        // ArmorStand - small(false)로 해야 head가 정확한 위치에 표시됨
+        // ArmorStand - small(true) + marker로 head가 eyeLoc에 바로 위치
         ArmorStand stand = player.getWorld()
             .spawn(eyeLoc, ArmorStand.class, as -> {
                 as.setVisible(false);
                 as.setGravity(false);
-                as.setSmall(false);   // head 위치 정확도를 위해 false
+                as.setSmall(true);
                 as.setMarker(true);
                 as.setInvulnerable(true);
                 as.setCustomNameVisible(false);
@@ -75,10 +75,9 @@ public class Skill_3 {
                     return;
                 }
 
-                // 투사체 위치 - ArmorStand head가 눈높이에 오도록 -1.8 보정
+                // 투사체 위치 - 눈높이 그대로
                 Location pos = eyeLoc.clone().add(dir.clone().multiply(traveled));
-                // head 슬롯은 ArmorStand 키 1.8 위에 있으므로 1.8 내려서 배치
-                stand.teleport(pos.clone().subtract(0, 1.8, 0));
+                stand.teleport(pos);
 
                 // 파티클 없음 (이미지로 대체)
 
