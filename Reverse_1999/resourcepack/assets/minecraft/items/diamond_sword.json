@@ -23,6 +23,216 @@
           "type": "minecraft:model",
           "model": "minecraft:item/projectile_2"
         }
+      },
+      {
+        "when": "skill2_beam_00",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_00"
+        }
+      },
+      {
+        "when": "skill2_beam_01",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_01"
+        }
+      },
+      {
+        "when": "skill2_beam_02",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_02"
+        }
+      },
+      {
+        "when": "skill2_beam_03",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_03"
+        }
+      },
+      {
+        "when": "skill2_beam_04",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_04"
+        }
+      },
+      {
+        "when": "skill2_beam_05",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_05"
+        }
+      },
+      {
+        "when": "skill2_beam_06",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_06"
+        }
+      },
+      {
+        "when": "skill2_beam_07",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_07"
+        }
+      },
+      {
+        "when": "skill2_beam_08",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_08"
+        }
+      },
+      {
+        "when": "skill2_beam_09",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_09"
+        }
+      },
+      {
+        "when": "skill2_beam_10",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_10"
+        }
+      },
+      {
+        "when": "skill2_beam_11",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_11"
+        }
+      },
+      {
+        "when": "skill2_beam_12",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_12"
+        }
+      },
+      {
+        "when": "skill2_beam_13",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_13"
+        }
+      },
+      {
+        "when": "skill2_beam_14",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_14"
+        }
+      },
+      {
+        "when": "skill2_beam_15",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_15"
+        }
+      },
+      {
+        "when": "skill2_beam_16",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_16"
+        }
+      },
+      {
+        "when": "skill2_beam_17",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_17"
+        }
+      },
+      {
+        "when": "skill2_beam_18",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_18"
+        }
+      },
+      {
+        "when": "skill2_beam_19",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_19"
+        }
+      },
+      {
+        "when": "skill2_beam_20",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_20"
+        }
+      },
+      {
+        "when": "skill2_beam_21",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_beam_21"
+        }
+      },
+      {
+        "when": "skill2_circle_00",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_circle_00"
+        }
+      },
+      {
+        "when": "skill2_circle_01",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_circle_01"
+        }
+      },
+      {
+        "when": "skill2_circle_02",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_circle_02"
+        }
+      },
+      {
+        "when": "skill2_circle_03",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_circle_03"
+        }
+      },
+      {
+        "when": "skill2_circle_04",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_circle_04"
+        }
+      },
+      {
+        "when": "skill2_circle_05",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_circle_05"
+        }
+      },
+      {
+        "when": "skill2_circle_06",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_circle_06"
+        }
+      },
+      {
+        "when": "skill2_circle_07",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill2_circle_07"
+        }
       }
     ],
     "fallback": {

@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "minecraft:gui/skill/skill2_beam/beam_14"
+  }
+}
