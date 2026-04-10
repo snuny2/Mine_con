@@ -291,6 +291,276 @@
       "chars": [
         ""
       ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_00.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_01.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_02.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_03.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_04.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_05.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_06.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_07.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_08.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_09.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_10.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_11.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_12.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_13.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_14.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_15.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_16.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_17.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_18.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_19.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_20.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_beam/beam_21.png",
+      "ascent": 100,
+      "height": 200,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_circle/circle_00.png",
+      "ascent": 8,
+      "height": 80,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_circle/circle_01.png",
+      "ascent": 8,
+      "height": 80,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_circle/circle_02.png",
+      "ascent": 8,
+      "height": 80,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_circle/circle_03.png",
+      "ascent": 8,
+      "height": 80,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_circle/circle_04.png",
+      "ascent": 8,
+      "height": 80,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_circle/circle_05.png",
+      "ascent": 8,
+      "height": 80,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_circle/circle_06.png",
+      "ascent": 8,
+      "height": 80,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:gui/skill/skill2_circle/circle_07.png",
+      "ascent": 8,
+      "height": 80,
+      "chars": [
+        ""
+      ]
     }
   ]
 }
