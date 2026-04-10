@@ -5,17 +5,17 @@
   },
   "display": {
     "head": {
-      "rotation": [90, 0, 0],
+      "rotation": [0, 0, 0],
       "translation": [0, 0, 0],
       "scale": [4, 4, 4]
     },
     "ground": {
-      "rotation": [90, 0, 0],
+      "rotation": [0, 0, 0],
       "translation": [0, 0, 0],
       "scale": [4, 4, 4]
     },
     "fixed": {
-      "rotation": [90, 0, 0],
+      "rotation": [0, 0, 0],
       "translation": [0, 0, 0],
       "scale": [4, 4, 4]
     }
