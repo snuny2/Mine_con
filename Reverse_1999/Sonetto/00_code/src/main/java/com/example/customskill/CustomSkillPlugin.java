@@ -12,9 +12,14 @@ public class CustomSkillPlugin extends JavaPlugin {
     private CooldownManager cooldownManager;
     private GaugeManager gaugeManager;
 
-    // 1.21.4+ 문자열 방식 custom_model_data
-    public static final String ITEM_MODEL_STRING       = "sonetto";    // 커스텀 무기
-    public static final String PROJECTILE_MODEL_STRING = "projectile"; // 투사체
+    // 아이템 custom_model_data 문자열
+    public static final String ITEM_MODEL_STRING       = "sonetto";
+    public static final String PROJECTILE_MODEL_STRING = "projectile";
+
+    // 폰트 유니코드 상수
+    public static final String PROJ_1_CHAR  = "\uE200"; // 투사체1
+    public static final String PROJ_2_CHAR  = "\uE201"; // 투사체2
+    public static final String SWING_CHAR   = "\uE202"; // 휘두르기
 
     @Override
     public void onEnable() {

@@ -16,7 +16,6 @@ import java.util.UUID;
 public class GaugeManager {
 
     private final CustomSkillPlugin plugin;
-    // 현재 재생 중인 태스크
     private final Map<UUID, BukkitTask> taskMap = new HashMap<>();
 
     // GIF 29프레임 유니코드 \uE100 ~ \uE11C
@@ -29,23 +28,15 @@ public class GaugeManager {
         "\uE119", "\uE11A", "\uE11B", "\uE11C"
     };
 
-    // 휘두르기 오버레이 유니코드
-    private static final String SWING_CHAR = "\uE200";
-
-    // GIF 100ms = 2틱
     private static final long FRAME_TICKS = 1L;
 
     public GaugeManager(CustomSkillPlugin plugin) {
         this.plugin = plugin;
     }
 
-    /**
-     * 한 번 누르면 게이지 애니메이션 자동 재생 → 끝나면 스킬 발동
-     * 재생 중이면 무시 (중복 실행 방지)
-     */
     public void startCharging(Player player) {
         UUID id = player.getUniqueId();
-        if (taskMap.containsKey(id)) return; // 이미 재생 중
+        if (taskMap.containsKey(id)) return;
 
         final int[] frame = {0};
 
@@ -53,22 +44,18 @@ public class GaugeManager {
             @Override
             public void run() {
                 if (frame[0] >= GAUGE_CHARS.length) {
-                    // 모든 프레임 재생 완료
                     cancel();
                     taskMap.remove(id);
-
-                    // 휘두르기 오버레이 표시 + 스킬 발동
-                    showSwingOverlay(player);
+                    // 게이지 완료 → 휘두르기 이미지 표시 후 스킬 발동
+                    showActionBar(player, CustomSkillPlugin.SWING_CHAR);
                     Skill_3.fire(player, plugin);
-
-                    // 0.8초 후 액션바 클리어
+                    // 투사체 발사 후 액션바 클리어
                     new BukkitRunnable() {
-                        @Override public void run() { clearFrame(player); }
-                    }.runTaskLater(plugin, 16L);
+                        @Override public void run() { clearActionBar(player); }
+                    }.runTaskLater(plugin, 20L);
                     return;
                 }
-
-                showFrame(player, frame[0]);
+                showActionBar(player, GAUGE_CHARS[frame[0]]);
                 frame[0]++;
             }
         }.runTaskTimer(plugin, 0L, FRAME_TICKS);
@@ -80,7 +67,7 @@ public class GaugeManager {
         UUID id = player.getUniqueId();
         BukkitTask t = taskMap.remove(id);
         if (t != null) t.cancel();
-        clearFrame(player);
+        clearActionBar(player);
     }
 
     public boolean isCharging(Player player) {
@@ -92,25 +79,15 @@ public class GaugeManager {
         taskMap.clear();
     }
 
-    // 게이지 프레임 액션바 표시
-    private void showFrame(Player player, int frame) {
+    private void showActionBar(Player player, String text) {
         player.sendActionBar(
-            Component.text(GAUGE_CHARS[frame])
+            Component.text(text)
                 .font(Key.key("minecraft", "default"))
                 .color(TextColor.color(0xFFFFFF))
         );
     }
 
-    // 휘두르기 오버레이 (Title Subtitle로 화면 중앙 표시)
-    private void showSwingOverlay(Player player) {
-        player.sendActionBar(
-            Component.text(SWING_CHAR)
-                .font(Key.key("minecraft", "default"))
-                .color(TextColor.color(0xFFFFFF))
-        );
-    }
-
-    private void clearFrame(Player player) {
+    private void clearActionBar(Player player) {
         player.sendActionBar(Component.empty());
     }
 }
