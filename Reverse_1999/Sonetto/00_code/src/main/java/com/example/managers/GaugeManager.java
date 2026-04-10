@@ -33,7 +33,7 @@ public class GaugeManager {
     private static final String SWING_CHAR = "\uE200";
 
     // GIF 100ms = 2틱
-    private static final long FRAME_TICKS = 2L;
+    private static final long FRAME_TICKS = 1L;
 
     public GaugeManager(CustomSkillPlugin plugin) {
         this.plugin = plugin;
