@@ -110,7 +110,7 @@ public class Skill_2 {
 
                 // 플레이어 머리 위 0.5블록
                 ItemDisplay buffDisplay = buffPos.getWorld()
-                        .spawn(buffPos.clone().add(0, 2.5, 0), ItemDisplay.class, d -> {
+                        .spawn(buffPos.clone().add(0, 0.5, 0), ItemDisplay.class, d -> {
                             d.setBillboard(Display.Billboard.VERTICAL); // 항상 카메라 방향 바라봄
                             d.setTransformation(new Transformation(
                                     new Vector3f(0, 0, 0),
