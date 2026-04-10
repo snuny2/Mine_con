@@ -12,22 +12,13 @@ public class CustomSkillPlugin extends JavaPlugin {
     private CooldownManager cooldownManager;
     private GaugeManager gaugeManager;
 
-    public static final String ITEM_MODEL_STRING       = "sonetto";
-    public static final String PROJECTILE_MODEL_STRING = "projectile";
+    // custom_model_data 문자열
+    public static final String ITEM_MODEL_STRING  = "sonetto";
+    public static final String PROJ_1_MODEL       = "projectile_1"; // 투사체1 모델
+    public static final String PROJ_2_MODEL       = "projectile_2"; // 투사체2 모델
 
-    // ── 폰트 유니코드 배치 ──────────────────────────────
-    // 게이지 프레임: \uE100 ~ \uE11C (29개, GaugeManager에서 직접 사용)
-
-    // 스킬1 (원거리) 투사체
-    public static final String PROJ_1_CHAR  = "\uE200"; // 투사체1 이미지
-    public static final String PROJ_2_CHAR  = "\uE201"; // 투사체2 이미지
-    public static final String SWING_CHAR   = "\uE202"; // 휘두르기 이펙트
-
-    // 스킬2 (버프) - 이미지 미정, 나중에 추가
-    // public static final String BUFF_OVERLAY = "\uE300";
-
-    // 스킬3 (광역) - 이미지 미정, 나중에 추가
-    // public static final String AOE_OVERLAY  = "\uE400";
+    // 액션바 유니코드 (게이지/휘두르기용)
+    public static final String SWING_CHAR = "\uE202";
 
     @Override
     public void onEnable() {

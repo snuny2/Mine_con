@@ -2,10 +2,8 @@ package com.example.customskill.skills;
 
 import com.example.customskill.CustomSkillPlugin;
 import com.example.customskill.managers.CooldownManager;
-import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
@@ -25,15 +23,14 @@ public class Skill_3 {
     private static final int    WEAKNESS_SEC = 3;
     private static final double SPEED        = 0.5;
 
-    /** 게이지 완료 후 호출 - 투사체1 발사 후 즉시 투사체2 발사 */
+    /** 게이지 완료 → 투사체1 발사 → 즉시 투사체2 발사 */
     public static void fire(Player player, CustomSkillPlugin plugin) {
-        // 투사체1 발사
-        fireProjectile(player, plugin, 1, () -> {
-            // 투사체1 끝나면 바로 투사체2 발사 (0.1초 딜레이)
+        // 투사체1 (projectile_1 모델)
+        fireProjectile(player, plugin, CustomSkillPlugin.PROJ_1_MODEL, 1, () -> {
+            // 투사체1 끝나면 바로 투사체2
             new BukkitRunnable() {
                 @Override public void run() {
-                    fireProjectile(player, plugin, 2, () -> {
-                        // 투사체2 끝나면 쿨타임 적용
+                    fireProjectile(player, plugin, CustomSkillPlugin.PROJ_2_MODEL, 2, () -> {
                         applyCooldown(player, plugin);
                     });
                 }
@@ -42,18 +39,14 @@ public class Skill_3 {
     }
 
     private static void fireProjectile(Player player, CustomSkillPlugin plugin,
-                                        int projNum, Runnable onComplete) {
+                                        String modelString, int projNum,
+                                        Runnable onComplete) {
         player.playSound(player.getLocation(), Sound.ENTITY_ARROW_SHOOT, 1f, 0.8f);
 
         Location start = player.getEyeLocation();
         Vector   dir   = start.getDirection().normalize();
 
-        // 투사체 번호에 따라 액션바 문자 선택
-        String projChar = projNum == 1
-            ? CustomSkillPlugin.PROJ_1_CHAR
-            : CustomSkillPlugin.PROJ_2_CHAR;
-
-        // ArmorStand 투사체 생성
+        // ArmorStand 생성 - 투사체 모델 장착
         ArmorStand stand = player.getWorld()
             .spawn(start, ArmorStand.class, as -> {
                 as.setVisible(false);
@@ -63,16 +56,17 @@ public class Skill_3 {
                 as.setInvulnerable(true);
                 as.setCustomNameVisible(false);
 
+                // 각 투사체 모델 문자열로 아이템 생성
                 ItemStack projItem = new ItemStack(Material.DIAMOND_SWORD);
                 ItemMeta  meta     = projItem.getItemMeta();
                 CustomModelDataComponent cmd = meta.getCustomModelDataComponent();
-                cmd.setStrings(List.of(CustomSkillPlugin.PROJECTILE_MODEL_STRING));
+                cmd.setStrings(List.of(modelString)); // "projectile_1" or "projectile_2"
                 meta.setCustomModelDataComponent(cmd);
                 projItem.setItemMeta(meta);
                 as.getEquipment().setHelmet(projItem);
             });
 
-        final boolean[] completed = {false};
+        final boolean[] done = {false};
 
         new BukkitRunnable() {
             double traveled = 0;
@@ -82,26 +76,16 @@ public class Skill_3 {
                 if (traveled >= RANGE || stand.isDead()) {
                     stand.remove();
                     cancel();
-                    if (!completed[0]) {
-                        completed[0] = true;
-                        onComplete.run();
-                    }
+                    if (!done[0]) { done[0] = true; onComplete.run(); }
                     return;
                 }
 
                 Location pos = start.clone().add(dir.clone().multiply(traveled));
                 stand.teleport(pos);
 
-                // 투사체 액션바 이미지 표시
-                player.sendActionBar(
-                    Component.text(projChar)
-                        .font(Key.key("minecraft", "default"))
-                        .color(TextColor.color(0xFFFFFF))
-                );
-
-                // 꼬리 파티클
+                // 꼬리 파티클 (가볍게)
                 player.getWorld().spawnParticle(
-                    Particle.ENCHANTED_HIT, pos, 3, 0.05, 0.05, 0.05, 0.01);
+                    Particle.ENCHANTED_HIT, pos, 2, 0.05, 0.05, 0.05, 0.01);
 
                 // 충돌 검사
                 for (Entity entity : player.getWorld()
@@ -117,9 +101,8 @@ public class Skill_3 {
                         WEAKNESS_SEC * 20, 0, false, true, true));
 
                     target.getWorld().spawnParticle(
-                        Particle.POOF,
-                        target.getLocation().add(0, 1, 0),
-                        20, 0.3, 0.3, 0.3, 0.15);
+                        Particle.POOF, target.getLocation().add(0, 1, 0),
+                        15, 0.3, 0.3, 0.3, 0.1);
                     target.getWorld().playSound(
                         target.getLocation(), Sound.ENTITY_PLAYER_HURT, 1f, 1f);
 
@@ -132,24 +115,18 @@ public class Skill_3 {
 
                     stand.remove();
                     cancel();
-                    if (!completed[0]) {
-                        completed[0] = true;
-                        onComplete.run();
-                    }
+                    if (!done[0]) { done[0] = true; onComplete.run(); }
                     return;
                 }
                 traveled += SPEED;
             }
         }.runTaskTimer(plugin, 0L, 1L);
 
-        // 끝까지 못 맞혀도 콜백 실행
+        // 사거리 초과 시 콜백
         new BukkitRunnable() {
             @Override public void run() {
                 if (!stand.isDead()) stand.remove();
-                if (!completed[0]) {
-                    completed[0] = true;
-                    onComplete.run();
-                }
+                if (!done[0]) { done[0] = true; onComplete.run(); }
             }
         }.runTaskLater(plugin, (long)(RANGE / SPEED) + 2L);
     }
