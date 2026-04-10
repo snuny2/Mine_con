@@ -1,6 +1,8 @@
 package com.example.customskill.skills;
 
 import com.example.customskill.CustomSkillPlugin;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -9,7 +11,7 @@ import java.util.Collection;
 
 public class Skill_1 {
 
-    private static final double AOE_SIZE = 4.5; // 9x9 반지름
+    private static final double AOE_SIZE = 4.5;
     private static final double DAMAGE   = 12.0;
 
     public static void cast(Player player, CustomSkillPlugin plugin) {
@@ -24,7 +26,7 @@ public class Skill_1 {
             @Override
             public void run() {
                 Collection<Entity> nearby = center.getWorld()
-                    .getNearbyEntities(center, AOE_SIZE, AOE_SIZE, AOE_SIZE);
+                        .getNearbyEntities(center, AOE_SIZE, AOE_SIZE, AOE_SIZE);
 
                 int hit = 0;
                 for (Entity entity : nearby) {
@@ -34,19 +36,21 @@ public class Skill_1 {
                     LivingEntity target = (LivingEntity) entity;
                     target.damage(DAMAGE, player);
                     target.getWorld().spawnParticle(
-                        Particle.CRIT,
-                        target.getLocation().add(0, 1, 0),
-                        20, 0.5, 0.5, 0.5, 0.2);
+                            Particle.CRIT,
+                            target.getLocation().add(0, 1, 0),
+                            20, 0.5, 0.5, 0.5, 0.2);
 
                     player.sendMessage(
-                        ChatColor.GOLD + "💥 광역 데미지: "
-                        + ChatColor.RED + DAMAGE
-                        + ChatColor.GOLD + " → " + target.getName()
-                        + " (남은 체력: "
-                        + String.format("%.1f", target.getHealth()) + ")");
+                            Component.text("💥 광역 데미지: ").color(NamedTextColor.GOLD)
+                                    .append(Component.text(String.valueOf(DAMAGE)).color(NamedTextColor.RED))
+                                    .append(Component.text(" → " + target.getName()
+                                            + " (남은 체력: " + String.format("%.1f", target.getHealth()) + ")")
+                                            .color(NamedTextColor.YELLOW)));
                     hit++;
                 }
-                player.sendMessage(ChatColor.AQUA + "⚡ 광역 공격! 총 " + hit + "마리 적중");
+                // ✅ 수정: Component.AQUA → Component.text().color()
+                player.sendMessage(
+                        Component.text("⚡ 광역 공격! 총 " + hit + "마리 적중").color(NamedTextColor.AQUA));
             }
         }.runTaskLater(plugin, 6L);
     }
@@ -64,11 +68,8 @@ public class Skill_1 {
                     double x = Math.cos(angle) * radius;
                     double z = Math.sin(angle) * radius;
                     Location loc = center.clone().add(x, 0.1, z);
-                    player.getWorld().spawnParticle(
-                        Particle.SWEEP_ATTACK, loc, 1, 0, 0, 0, 0);
-                    // CRIT_MAGIC → 1.21에서 ENCHANTED_HIT으로 변경됨
-                    player.getWorld().spawnParticle(
-                        Particle.ENCHANTED_HIT, loc, 2, 0.1, 0.1, 0.1, 0.05);
+                    player.getWorld().spawnParticle(Particle.SWEEP_ATTACK, loc, 1, 0, 0, 0, 0);
+                    player.getWorld().spawnParticle(Particle.ENCHANTED_HIT, loc, 2, 0.1, 0.1, 0.1, 0.05);
                 }
                 radius += 0.4;
             }

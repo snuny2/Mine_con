@@ -2,6 +2,8 @@ package com.example.customskill.skills;
 
 import com.example.customskill.CustomSkillPlugin;
 import com.example.customskill.managers.CooldownManager;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
@@ -27,25 +29,23 @@ public class Skill_3 {
         Location start = player.getEyeLocation();
         Vector   dir   = start.getDirection().normalize();
 
-        // ArmorStand 투사체 생성
         ArmorStand stand = player.getWorld()
-            .spawn(start, ArmorStand.class, as -> {
-                as.setVisible(false);
-                as.setGravity(false);
-                as.setSmall(true);
-                as.setMarker(true);
-                as.setInvulnerable(true);
-                as.setCustomNameVisible(false);
+                .spawn(start, ArmorStand.class, as -> {
+                    as.setVisible(false);
+                    as.setGravity(false);
+                    as.setSmall(true);
+                    as.setMarker(true);
+                    as.setInvulnerable(true);
+                    as.setCustomNameVisible(false);
 
-                // 투사체 아이템 - 문자열 방식
-                ItemStack projItem = new ItemStack(Material.DIAMOND_SWORD);
-                ItemMeta  meta     = projItem.getItemMeta();
-                CustomModelDataComponent cmd = meta.getCustomModelDataComponent();
-                cmd.setStrings(List.of(CustomSkillPlugin.PROJECTILE_MODEL_STRING));
-                meta.setCustomModelDataComponent(cmd);
-                projItem.setItemMeta(meta);
-                as.getEquipment().setHelmet(projItem);
-            });
+                    ItemStack projItem = new ItemStack(Material.DIAMOND_SWORD);
+                    ItemMeta  meta     = projItem.getItemMeta();
+                    CustomModelDataComponent cmd = meta.getCustomModelDataComponent();
+                    cmd.setStrings(List.of(CustomSkillPlugin.PROJECTILE_MODEL_STRING));
+                    meta.setCustomModelDataComponent(cmd);
+                    projItem.setItemMeta(meta);
+                    as.getEquipment().setHelmet(projItem);
+                });
 
         new BukkitRunnable() {
             double traveled = 0;
@@ -62,13 +62,10 @@ public class Skill_3 {
                 Location pos = start.clone().add(dir.clone().multiply(traveled));
                 stand.teleport(pos);
 
-                // 꼬리 파티클
                 player.getWorld().spawnParticle(
-                    Particle.ENCHANTED_HIT, pos, 3, 0.05, 0.05, 0.05, 0.01);
+                        Particle.ENCHANTED_HIT, pos, 3, 0.05, 0.05, 0.05, 0.01);
 
-                // 충돌 검사
-                for (Entity entity : player.getWorld()
-                        .getNearbyEntities(pos, 0.7, 0.7, 0.7)) {
+                for (Entity entity : player.getWorld().getNearbyEntities(pos, 0.7, 0.7, 0.7)) {
                     if (!(entity instanceof LivingEntity)) continue;
                     if (entity.equals(player)) continue;
                     if (entity.equals(stand))  continue;
@@ -76,22 +73,21 @@ public class Skill_3 {
                     LivingEntity target = (LivingEntity) entity;
                     target.damage(DAMAGE, player);
                     target.addPotionEffect(new PotionEffect(
-                        PotionEffectType.WEAKNESS,
-                        WEAKNESS_SEC * 20, 0, false, true, true));
+                            PotionEffectType.WEAKNESS, WEAKNESS_SEC * 20, 0, false, true, true));
 
                     target.getWorld().spawnParticle(
-                        Particle.POOF,
-                        target.getLocation().add(0, 1, 0),
-                        20, 0.3, 0.3, 0.3, 0.15);
+                            Particle.POOF, target.getLocation().add(0, 1, 0),
+                            20, 0.3, 0.3, 0.3, 0.15);
                     target.getWorld().playSound(
-                        target.getLocation(), Sound.ENTITY_PLAYER_HURT, 1f, 1f);
+                            target.getLocation(), Sound.ENTITY_PLAYER_HURT, 1f, 1f);
 
+                    // ✅ NamedTextColor import 추가로 정상 작동
                     player.sendMessage(
-                        ChatColor.GOLD + "💥 원거리 데미지: "
-                        + ChatColor.RED + DAMAGE
-                        + ChatColor.GOLD + " → " + target.getName()
-                        + " (남은 체력: "
-                        + String.format("%.1f", target.getHealth()) + ")");
+                            Component.text("💥 원거리 데미지: ").color(NamedTextColor.GOLD)
+                                    .append(Component.text(String.valueOf(DAMAGE)).color(NamedTextColor.RED))
+                                    .append(Component.text(" → " + target.getName()
+                                            + " (남은 체력: " + String.format("%.1f", target.getHealth()) + ")")
+                                            .color(NamedTextColor.YELLOW)));
 
                     stand.remove();
                     cancel();
@@ -102,7 +98,6 @@ public class Skill_3 {
             }
         }.runTaskTimer(plugin, 0L, 1L);
 
-        // 끝까지 못 맞혀도 쿨타임 적용
         new BukkitRunnable() {
             @Override public void run() {
                 if (!stand.isDead()) stand.remove();
@@ -113,6 +108,6 @@ public class Skill_3 {
 
     private static void applyCooldown(Player player, CustomSkillPlugin plugin) {
         plugin.getCooldownManager().setCooldown(
-            player, CooldownManager.Skill.GAUGE, CooldownManager.GAUGE_CD);
+                player, CooldownManager.Skill.GAUGE, CooldownManager.GAUGE_CD);
     }
 }

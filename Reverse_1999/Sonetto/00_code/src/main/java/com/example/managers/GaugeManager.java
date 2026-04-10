@@ -16,50 +16,62 @@ import java.util.UUID;
 public class GaugeManager {
 
     private final CustomSkillPlugin plugin;
-    private final Map<UUID, Integer>    gaugeMap = new HashMap<>();
-    private final Map<UUID, BukkitTask> taskMap  = new HashMap<>();
+    // 현재 재생 중인 태스크
+    private final Map<UUID, BukkitTask> taskMap = new HashMap<>();
 
-    public static final int MAX_GAUGE = 10;
-
-    // 리소스팩 font/default.json 에서 매핑한 게이지 프레임 유니코드
-    // GIF 프레임 수에 맞게 수정하세요
+    // GIF 29프레임 유니코드 \uE100 ~ \uE11C
     private static final String[] GAUGE_CHARS = {
         "\uE100", "\uE101", "\uE102", "\uE103", "\uE104",
-        "\uE105", "\uE106", "\uE107", "\uE108", "\uE109", "\uE10A"
+        "\uE105", "\uE106", "\uE107", "\uE108", "\uE109",
+        "\uE10A", "\uE10B", "\uE10C", "\uE10D", "\uE10E",
+        "\uE10F", "\uE110", "\uE111", "\uE112", "\uE113",
+        "\uE114", "\uE115", "\uE116", "\uE117", "\uE118",
+        "\uE119", "\uE11A", "\uE11B", "\uE11C"
     };
+
+    // 휘두르기 오버레이 유니코드
+    private static final String SWING_CHAR = "\uE200";
+
+    // GIF 100ms = 2틱
+    private static final long FRAME_TICKS = 2L;
 
     public GaugeManager(CustomSkillPlugin plugin) {
         this.plugin = plugin;
     }
 
+    /**
+     * 한 번 누르면 게이지 애니메이션 자동 재생 → 끝나면 스킬 발동
+     * 재생 중이면 무시 (중복 실행 방지)
+     */
     public void startCharging(Player player) {
         UUID id = player.getUniqueId();
-        if (taskMap.containsKey(id)) return;
+        if (taskMap.containsKey(id)) return; // 이미 재생 중
 
-        gaugeMap.put(id, 0);
-        showFrame(player, 0);
+        final int[] frame = {0};
 
         BukkitTask task = new BukkitRunnable() {
             @Override
             public void run() {
-                int cur = gaugeMap.getOrDefault(id, 0) + 1;
-                gaugeMap.put(id, cur);
-                showFrame(player, cur);
-
-                if (cur >= MAX_GAUGE) {
+                if (frame[0] >= GAUGE_CHARS.length) {
+                    // 모든 프레임 재생 완료
                     cancel();
                     taskMap.remove(id);
-                    // 게이지 MAX → 원거리 스킬 발동
+
+                    // 휘두르기 오버레이 표시 + 스킬 발동
+                    showSwingOverlay(player);
                     Skill_3.fire(player, plugin);
+
+                    // 0.8초 후 액션바 클리어
                     new BukkitRunnable() {
-                        @Override public void run() {
-                            gaugeMap.remove(id);
-                            clearFrame(player);
-                        }
-                    }.runTaskLater(plugin, 10L);
+                        @Override public void run() { clearFrame(player); }
+                    }.runTaskLater(plugin, 16L);
+                    return;
                 }
+
+                showFrame(player, frame[0]);
+                frame[0]++;
             }
-        }.runTaskTimer(plugin, 0L, 4L); // 4틱 = 0.2초마다 프레임 전환
+        }.runTaskTimer(plugin, 0L, FRAME_TICKS);
 
         taskMap.put(id, task);
     }
@@ -68,7 +80,6 @@ public class GaugeManager {
         UUID id = player.getUniqueId();
         BukkitTask t = taskMap.remove(id);
         if (t != null) t.cancel();
-        gaugeMap.remove(id);
         clearFrame(player);
     }
 
@@ -79,14 +90,22 @@ public class GaugeManager {
     public void cancelAll() {
         taskMap.values().forEach(BukkitTask::cancel);
         taskMap.clear();
-        gaugeMap.clear();
     }
 
+    // 게이지 프레임 액션바 표시
     private void showFrame(Player player, int frame) {
-        int idx = Math.min(frame, GAUGE_CHARS.length - 1);
         player.sendActionBar(
-            Component.text(GAUGE_CHARS[idx])
-                .font(Key.key("minecraft", "default"))
+            Component.text(GAUGE_CHARS[frame])
+                .font(Key.key("minecraft", "skill_font"))
+                .color(TextColor.color(0xFFFFFF))
+        );
+    }
+
+    // 휘두르기 오버레이 (Title Subtitle로 화면 중앙 표시)
+    private void showSwingOverlay(Player player) {
+        player.sendActionBar(
+            Component.text(SWING_CHAR)
+                .font(Key.key("minecraft", "skill_font"))
                 .color(TextColor.color(0xFFFFFF))
         );
     }

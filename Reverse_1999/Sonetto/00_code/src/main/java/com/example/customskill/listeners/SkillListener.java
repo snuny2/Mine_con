@@ -67,13 +67,17 @@ public class SkillListener implements Listener {
             return;
         }
 
-        // 우클릭 → 게이지 충전 → Skill_3 원거리
+        // 우클릭 → 게이지 애니메이션 자동 재생 후 Skill_3 발사
+        // 재생 중이면 무시
         if (!sneak && rightClick) {
             if (cdm.isOnCooldown(player, Skill.GAUGE)) {
                 sendCooldownMsg(player, "원거리", cdm.getRemaining(player, Skill.GAUGE));
                 return;
             }
-            if (!gm.isCharging(player)) gm.startCharging(player);
+            if (!gm.isCharging(player)) {
+                gm.startCharging(player);
+                // 쿨타임은 Skill_3 발동 시 적용됨
+            }
         }
     }
 
@@ -89,7 +93,6 @@ public class SkillListener implements Listener {
         if (item == null || item.getType() == Material.AIR) return false;
         if (!item.hasItemMeta()) return false;
         ItemMeta meta = item.getItemMeta();
-        // 1.21.4+ 문자열 방식으로 확인
         CustomModelDataComponent cmd = meta.getCustomModelDataComponent();
         return cmd.getStrings().contains(CustomSkillPlugin.ITEM_MODEL_STRING);
     }
