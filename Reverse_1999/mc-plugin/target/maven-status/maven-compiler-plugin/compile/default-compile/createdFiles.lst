@@ -11,6 +11,7 @@ com\example\customskill\skills\Skill_3.class
 com\example\customskill\managers\CooldownManager$Skill.class
 com\example\customskill\skills\Skill_2.class
 com\example\customskill\commands\DebugCommand.class
+com\example\customskill\skills\Skill_3$3.class
 com\example\customskill\managers\GaugeManager.class
 com\example\customskill\skills\Skill_3$2.class
 com\example\customskill\managers\GaugeManager$1.class
