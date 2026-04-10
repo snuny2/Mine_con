@@ -22,8 +22,8 @@ public class Skill_2 {
     private static final int  BUFF_SEC      = 5;
     private static final int  BEAM_FRAMES   = 22;
     private static final int  CIRCLE_FRAMES = 8;
-    private static final long BEAM_TICKS    = 1L;  // 22틱 = 1.1초
-    private static final long CIRCLE_TICKS  = 4L;  // 32틱 = 1.6초
+    private static final long BEAM_TICKS    = 1L;
+    private static final long CIRCLE_TICKS  = 4L;
 
     public static void cast(Player player, CustomSkillPlugin plugin) {
         player.addPotionEffect(new PotionEffect(
@@ -33,31 +33,34 @@ public class Skill_2 {
 
         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 0.8f, 1.5f);
 
-        Location center = player.getLocation();
+        // yaw=0, pitch=0 으로 고정된 위치 (회전 상속 방지)
+        Location base = player.getLocation().clone();
+        base.setYaw(0f);
+        base.setPitch(0f);
 
-        // ── Circle: 발밑 바닥 4x4블록 ──────────────────────────
-        ItemDisplay circleDisplay = center.getWorld()
-            .spawn(center.clone().add(0, 0.05, 0), ItemDisplay.class, d -> {
-                // FIXED: 방향 고정 (플레이어 방향 무관)
+        Location circlePos = base.clone().add(0, 0.05, 0);
+        Location beamPos   = base.clone().add(0, 2.0, 0);
+
+        // ── Circle: 발밑 바닥, yaw 고정 ─────────────────────────
+        ItemDisplay circleDisplay = circlePos.getWorld()
+            .spawn(circlePos, ItemDisplay.class, d -> {
                 d.setBillboard(Display.Billboard.FIXED);
                 d.setTransformation(new Transformation(
                     new Vector3f(0, 0, 0),
-                    // X축 -90도 회전 → 바닥에 눕힘
                     new AxisAngle4f((float) Math.toRadians(-90), 1, 0, 0),
-                    new Vector3f(4, 4, 1),  // 4x4블록, 두께 1
+                    new Vector3f(4, 4, 1),
                     new AxisAngle4f(0, 0, 1, 0)
                 ));
             });
 
-        // ── Beam: 플레이어 머리 위 2블록, 항상 수직 고정 ────────
-        ItemDisplay beamDisplay = center.getWorld()
-            .spawn(center.clone().add(0, 2, 0), ItemDisplay.class, d -> {
-                // FIXED: 방향 고정, 항상 세로 유지
+        // ── Beam: 머리 위 2블록, yaw 고정, 항상 수직 ────────────
+        ItemDisplay beamDisplay = beamPos.getWorld()
+            .spawn(beamPos, ItemDisplay.class, d -> {
                 d.setBillboard(Display.Billboard.FIXED);
                 d.setTransformation(new Transformation(
-                    new Vector3f(0, -1.5f, 0),  // Y 중심 보정 (위2→아래)
-                    new AxisAngle4f(0, 0, 1, 0), // 회전 없음 (세로)
-                    new Vector3f(1.5f, 3f, 1.5f), // 너비1.5, 높이3블록
+                    new Vector3f(0, -1.5f, 0),
+                    new AxisAngle4f(0, 0, 1, 0),
+                    new Vector3f(1.5f, 3f, 1.5f),
                     new AxisAngle4f(0, 0, 1, 0)
                 ));
             });
