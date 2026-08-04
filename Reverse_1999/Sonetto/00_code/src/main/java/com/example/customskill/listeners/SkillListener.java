@@ -56,18 +56,18 @@ public class SkillListener implements Listener {
             return;
         }
 
-        // 쉬프트 + 좌클릭 → Skill_1 광역
+        // 쉬프트 + 좌클릭 → Skill_3 광역
         if (sneak && leftClick) {
             if (cdm.isOnCooldown(player, Skill.AOE)) {
                 sendCooldownMsg(player, "광역", cdm.getRemaining(player, Skill.AOE));
                 return;
             }
-            Skill_1.cast(player, plugin);
+            Skill_3.cast(player, plugin);
             cdm.setCooldown(player, Skill.AOE, CooldownManager.AOE_CD);
             return;
         }
 
-        // 우클릭 → 게이지 애니메이션 자동 재생 후 Skill_3 발사
+        // 우클릭 → 게이지 애니메이션 자동 재생 후 Skill_1 발사
         // 재생 중이면 무시
         if (!sneak && rightClick) {
             if (cdm.isOnCooldown(player, Skill.GAUGE)) {
