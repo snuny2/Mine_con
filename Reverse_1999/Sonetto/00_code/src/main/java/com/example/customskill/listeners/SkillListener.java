@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
@@ -22,76 +23,123 @@ import org.bukkit.inventory.meta.components.CustomModelDataComponent;
 public class SkillListener implements Listener {
 
     private final CustomSkillPlugin plugin;
-    private final CooldownManager   cdm;
-    private final GaugeManager      gm;
+    private final CooldownManager cdm;
+    private final GaugeManager gm;
 
     public SkillListener(CustomSkillPlugin plugin) {
         this.plugin = plugin;
-        this.cdm    = plugin.getCooldownManager();
-        this.gm     = plugin.getGaugeManager();
+        this.cdm = plugin.getCooldownManager();
+        this.gm = plugin.getGaugeManager();
     }
 
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
-        if (e.getHand() != EquipmentSlot.HAND) return;
+        if (e.getHand() != EquipmentSlot.HAND)
+            return;
 
         Player player = e.getPlayer();
-        if (!isCustomItem(player.getInventory().getItemInMainHand())) return;
-        e.setCancelled(true);
+        if (!isCustomItem(player.getInventory().getItemInMainHand()))
+            return;
 
-        boolean sneak      = player.isSneaking();
+        boolean sneak = player.isSneaking();
         boolean rightClick = e.getAction() == Action.RIGHT_CLICK_AIR
-                          || e.getAction() == Action.RIGHT_CLICK_BLOCK;
-        boolean leftClick  = e.getAction() == Action.LEFT_CLICK_AIR
-                          || e.getAction() == Action.LEFT_CLICK_BLOCK;
+                || e.getAction() == Action.RIGHT_CLICK_BLOCK;
+        boolean leftClick = e.getAction() == Action.LEFT_CLICK_AIR
+                || e.getAction() == Action.LEFT_CLICK_BLOCK;
 
-        // 쉬프트 + 우클릭 → Skill_2 버프
-        if (sneak && rightClick) {
-            if (cdm.isOnCooldown(player, Skill.BUFF)) {
-                sendCooldownMsg(player, "버프", cdm.getRemaining(player, Skill.BUFF));
+        // 우클릭 → 게이지 충전 후 원거리 발사 (Skill_3)
+        if (!sneak && rightClick) {
+            if (cdm.isOnCooldown(player, Skill.GAUGE))
                 return;
-            }
+            e.setCancelled(true);
+            if (!gm.isCharging(player))
+                gm.startCharging(player);
+            return;
+        }
+
+        // 쉬프트 + 우클릭 → 버프 (Skill_2)
+        if (sneak && rightClick) {
+            if (cdm.isOnCooldown(player, Skill.BUFF))
+                return;
+            e.setCancelled(true);
             Skill_2.cast(player, plugin);
             cdm.setCooldown(player, Skill.BUFF, CooldownManager.BUFF_CD);
             return;
         }
 
-        // 쉬프트 + 좌클릭 → Skill_3 광역
+        // 쉬프트 + 좌클릭 → 광역 (Skill_1)
         if (sneak && leftClick) {
-            if (cdm.isOnCooldown(player, Skill.AOE)) {
-                sendCooldownMsg(player, "광역", cdm.getRemaining(player, Skill.AOE));
+            if (cdm.isOnCooldown(player, Skill.AOE))
                 return;
-            }
-            Skill_3.cast(player, plugin);
+            e.setCancelled(true);
+            Skill_1.cast(player, plugin);
             cdm.setCooldown(player, Skill.AOE, CooldownManager.AOE_CD);
             return;
         }
+    }
 
-        // 우클릭 → 게이지 애니메이션 자동 재생 후 Skill_1 발사
-        // 재생 중이면 무시
-        if (!sneak && rightClick) {
-            if (cdm.isOnCooldown(player, Skill.GAUGE)) {
-                sendCooldownMsg(player, "원거리", cdm.getRemaining(player, Skill.GAUGE));
+    @EventHandler
+    public void onInteractEntity(org.bukkit.event.player.PlayerInteractEntityEvent e) {
+        if (e.getHand() != EquipmentSlot.HAND)
+            return;
+        Player player = e.getPlayer();
+        if (!isCustomItem(player.getInventory().getItemInMainHand()))
+            return;
+
+        boolean sneak = player.isSneaking();
+
+        // 쉬프트 + 우클릭 → 버프 (엔티티 위에서도 스킬 발동)
+        if (sneak) {
+            if (cdm.isOnCooldown(player, Skill.BUFF))
+                return; // 쿨타임 중 → 기본 동작
+            e.setCancelled(true);
+            Skill_2.cast(player, plugin);
+            cdm.setCooldown(player, Skill.BUFF, CooldownManager.BUFF_CD);
+        } else {
+            if (cdm.isOnCooldown(player, Skill.GAUGE))
                 return;
-            }
-            if (!gm.isCharging(player)) {
+            e.setCancelled(true);
+            if (!gm.isCharging(player))
                 gm.startCharging(player);
-                // 쿨타임은 Skill_3 발동 시 적용됨
-            }
+        }
+
+        // 우클릭 → 원거리 (엔티티 위에서도 게이지 시작)
+        if (cdm.isOnCooldown(player, Skill.GAUGE))
+            return;
+        e.setCancelled(true);
+        if (!gm.isCharging(player))
+            gm.startCharging(player);
+    }
+
+    @EventHandler
+    public void onDamageEntity(EntityDamageByEntityEvent e) {
+        if (!(e.getDamager() instanceof Player player))
+            return;
+        if (!isCustomItem(player.getInventory().getItemInMainHand()))
+            return;
+
+        // 쉬프트 + 좌클릭 → 광역 스킬 (기본 공격 차단)
+        if (player.isSneaking()) {
+            if (cdm.isOnCooldown(player, Skill.AOE))
+                return; // 쿨타임 중 → 기본 공격
+            e.setCancelled(true);
+            Skill_1.cast(player, plugin);
+            cdm.setCooldown(player, Skill.AOE, CooldownManager.AOE_CD);
         }
     }
 
     private void sendCooldownMsg(Player player, String skill, double sec) {
         player.sendMessage(
-            Component.text(skill + " 쿨타임: ").color(NamedTextColor.RED)
-                .append(Component.text(String.format("%.1f", sec) + "초")
-                    .color(NamedTextColor.YELLOW))
-        );
+                Component.text(skill + " 쿨타임: ").color(NamedTextColor.RED)
+                        .append(Component.text(String.format("%.1f", sec) + "초")
+                                .color(NamedTextColor.YELLOW)));
     }
 
     private boolean isCustomItem(ItemStack item) {
-        if (item == null || item.getType() == Material.AIR) return false;
-        if (!item.hasItemMeta()) return false;
+        if (item == null || item.getType() == Material.AIR)
+            return false;
+        if (!item.hasItemMeta())
+            return false;
         ItemMeta meta = item.getItemMeta();
         CustomModelDataComponent cmd = meta.getCustomModelDataComponent();
         return cmd.getStrings().contains(CustomSkillPlugin.ITEM_MODEL_STRING);

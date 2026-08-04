@@ -93,6 +93,7 @@ public class Skill_3 {
                         continue;
 
                     LivingEntity target = (LivingEntity) entity;
+                    target.setNoDamageTicks(0);
                     target.damage(DAMAGE, player);
                     target.addPotionEffect(new PotionEffect(
                             PotionEffectType.WEAKNESS,
