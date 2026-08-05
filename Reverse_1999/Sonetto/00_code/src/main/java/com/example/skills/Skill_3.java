@@ -12,7 +12,10 @@ import org.bukkit.inventory.meta.components.CustomModelDataComponent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Transformation;
 import org.bukkit.util.Vector;
+import org.joml.AxisAngle4f;
+import org.joml.Vector3f;
 
 import java.util.List;
 
@@ -37,27 +40,25 @@ public class Skill_3 {
             Runnable onComplete) {
         player.playSound(player.getLocation(), Sound.ENTITY_ARROW_SHOOT, 1f, 0.8f);
 
-        Location eyeLoc = player.getLocation().add(0, 0.5, 0);
+        Location eyeLoc = player.getEyeLocation();
         Vector dir = eyeLoc.getDirection().normalize();
 
-        // ArmorStand - small(true) + marker로 head가 eyeLoc에 바로 위치
-        ArmorStand stand = player.getWorld()
-                .spawn(eyeLoc, ArmorStand.class, as -> {
-                    as.setVisible(false);
-                    as.setGravity(false);
-                    as.setSmall(true);
-                    as.setMarker(true);
-                    as.setInvulnerable(true);
-                    as.setCustomNameVisible(false);
-
-                    ItemStack projItem = new ItemStack(Material.DIAMOND_SWORD);
-                    ItemMeta meta = projItem.getItemMeta();
-                    CustomModelDataComponent cmd = meta.getCustomModelDataComponent();
-                    cmd.setStrings(List.of(modelString));
-                    meta.setCustomModelDataComponent(cmd);
-                    projItem.setItemMeta(meta);
-                    as.getEquipment().setHelmet(projItem);
-                });
+        // ItemDisplay 사용 - 정확히 눈높이에서 시작, 파티클 없음
+        ItemDisplay proj = eyeLoc.getWorld().spawn(eyeLoc, ItemDisplay.class, d -> {
+            d.setBillboard(Display.Billboard.VERTICAL);
+            d.setTransformation(new Transformation(
+                    new Vector3f(0, 0, 0),
+                    new AxisAngle4f(0, 0, 1, 0),
+                    new Vector3f(2f, 2f, 2f),
+                    new AxisAngle4f(0, 0, 1, 0)));
+            ItemStack item = new ItemStack(Material.DIAMOND_SWORD);
+            ItemMeta meta = item.getItemMeta();
+            CustomModelDataComponent cmd = meta.getCustomModelDataComponent();
+            cmd.setStrings(List.of(modelString));
+            meta.setCustomModelDataComponent(cmd);
+            item.setItemMeta(meta);
+            d.setItemStack(item);
+        });
 
         final boolean[] done = { false };
 
@@ -66,8 +67,8 @@ public class Skill_3 {
 
             @Override
             public void run() {
-                if (traveled >= RANGE || stand.isDead()) {
-                    stand.remove();
+                if (traveled >= RANGE || proj.isDead()) {
+                    proj.remove();
                     cancel();
                     if (!done[0]) {
                         done[0] = true;
@@ -76,20 +77,18 @@ public class Skill_3 {
                     return;
                 }
 
-                // 투사체 위치 - 눈높이 그대로
+                // 정확히 눈높이 직선으로 이동
                 Location pos = eyeLoc.clone().add(dir.clone().multiply(traveled));
-                stand.teleport(pos);
+                proj.teleport(pos);
 
-                // 파티클 없음 (이미지로 대체)
-
-                // 충돌 검사 - head 위치 기준
-                for (Entity entity : player.getWorld()
+                // 충돌 검사
+                for (Entity entity : eyeLoc.getWorld()
                         .getNearbyEntities(pos, 0.8, 0.8, 0.8)) {
                     if (!(entity instanceof LivingEntity))
                         continue;
                     if (entity.equals(player))
                         continue;
-                    if (entity.equals(stand))
+                    if (entity instanceof ItemDisplay)
                         continue;
 
                     LivingEntity target = (LivingEntity) entity;
@@ -99,7 +98,6 @@ public class Skill_3 {
                             PotionEffectType.WEAKNESS,
                             WEAKNESS_SEC * 20, 0, false, true, true));
 
-                    // 피격 파티클
                     target.getWorld().spawnParticle(
                             Particle.POOF, target.getLocation().add(0, 1, 0),
                             15, 0.3, 0.3, 0.3, 0.1);
@@ -113,7 +111,7 @@ public class Skill_3 {
                                             + " (남은 체력: " + String.format("%.1f", target.getHealth()) + ")")
                                             .color(NamedTextColor.YELLOW)));
 
-                    stand.remove();
+                    proj.remove();
                     cancel();
                     if (!done[0]) {
                         done[0] = true;
@@ -128,8 +126,8 @@ public class Skill_3 {
         new BukkitRunnable() {
             @Override
             public void run() {
-                if (!stand.isDead())
-                    stand.remove();
+                if (!proj.isDead())
+                    proj.remove();
                 if (!done[0]) {
                     done[0] = true;
                     onComplete.run();

@@ -20,12 +20,12 @@ public class GaugeManager {
 
     // GIF 29프레임 유니코드 \uE100 ~ \uE11C
     private static final String[] GAUGE_CHARS = {
-        "\uE100", "\uE101", "\uE102", "\uE103", "\uE104",
-        "\uE105", "\uE106", "\uE107", "\uE108", "\uE109",
-        "\uE10A", "\uE10B", "\uE10C", "\uE10D", "\uE10E",
-        "\uE10F", "\uE110", "\uE111", "\uE112", "\uE113",
-        "\uE114", "\uE115", "\uE116", "\uE117", "\uE118",
-        "\uE119", "\uE11A", "\uE11B", "\uE11C"
+            "\uE100", "\uE101", "\uE102", "\uE103", "\uE104",
+            "\uE105", "\uE106", "\uE107", "\uE108", "\uE109",
+            "\uE10A", "\uE10B", "\uE10C", "\uE10D", "\uE10E",
+            "\uE10F", "\uE110", "\uE111", "\uE112", "\uE113",
+            "\uE114", "\uE115", "\uE116", "\uE117", "\uE118",
+            "\uE119", "\uE11A", "\uE11B", "\uE11C"
     };
 
     private static final long FRAME_TICKS = 1L;
@@ -36,9 +36,10 @@ public class GaugeManager {
 
     public void startCharging(Player player) {
         UUID id = player.getUniqueId();
-        if (taskMap.containsKey(id)) return;
+        if (taskMap.containsKey(id))
+            return;
 
-        final int[] frame = {0};
+        final int[] frame = { 0 };
 
         BukkitTask task = new BukkitRunnable() {
             @Override
@@ -51,7 +52,10 @@ public class GaugeManager {
                     Skill_3.fire(player, plugin);
                     // 투사체 발사 후 액션바 클리어
                     new BukkitRunnable() {
-                        @Override public void run() { clearActionBar(player); }
+                        @Override
+                        public void run() {
+                            clearActionBar(player);
+                        }
                     }.runTaskLater(plugin, 20L);
                     return;
                 }
@@ -66,7 +70,8 @@ public class GaugeManager {
     public void stopCharging(Player player) {
         UUID id = player.getUniqueId();
         BukkitTask t = taskMap.remove(id);
-        if (t != null) t.cancel();
+        if (t != null)
+            t.cancel();
         clearActionBar(player);
     }
 
@@ -81,10 +86,9 @@ public class GaugeManager {
 
     private void showActionBar(Player player, String text) {
         player.sendActionBar(
-            Component.text(text)
-                .font(Key.key("minecraft", "default"))
-                .color(TextColor.color(0xFFFFFF))
-        );
+                Component.text(text)
+                        .font(Key.key("minecraft", "default"))
+                        .color(TextColor.color(0xFFFFFF)));
     }
 
     private void clearActionBar(Player player) {

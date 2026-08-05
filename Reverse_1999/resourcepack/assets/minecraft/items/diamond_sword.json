@@ -282,6 +282,34 @@
           "type": "minecraft:model",
           "model": "minecraft:item/skill2_buff_06"
         }
+      },
+      {
+        "when": "skill1_0009",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill1_0009"
+        }
+      },
+      {
+        "when": "skill1_0010",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill1_0010"
+        }
+      },
+      {
+        "when": "skill1_0011",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill1_0011"
+        }
+      },
+      {
+        "when": "skill1_0012",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/skill1_0012"
+        }
       }
     ],
     "fallback": {
