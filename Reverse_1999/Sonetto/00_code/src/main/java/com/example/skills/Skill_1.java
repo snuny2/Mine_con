@@ -20,6 +20,8 @@ import java.util.List;
 import com.ticxo.modelengine.api.ModelEngineAPI;
 import com.ticxo.modelengine.api.model.ModeledEntity;
 import com.ticxo.modelengine.api.model.ActiveModel;
+import com.ticxo.modelengine.api.animation.handler.AnimationHandler;
+import com.ticxo.modelengine.api.animation.ModelState;
 
 public class Skill_1 {
 
@@ -51,7 +53,7 @@ public class Skill_1 {
         // ── 크리스탈 소환 (try-catch로 감싸서 실패해도 나머지 진행) ──
         final Entity[] holderRef = { null };
         try {
-            Entity holder = base.getWorld().spawn(base, ArmorStand.class, as -> {
+            Entity holder = base.getWorld().spawn(base.clone().add(0, 0, 0), ArmorStand.class, as -> {
                 as.setInvisible(true);
                 as.setGravity(false);
                 as.setMarker(true); // 콜리전 없음 → 데미지 안 맞음
@@ -62,6 +64,19 @@ public class Skill_1 {
             ModeledEntity modeled = ModelEngineAPI.createModeledEntity(holder);
             ActiveModel active = ModelEngineAPI.createActiveModel(CRYSTAL_MODEL);
             modeled.addModel(active, true);
+
+            active.setScale(2.0f);
+
+            AnimationHandler handler = active.getAnimationHandler();
+            AnimationHandler.DefaultProperty property = new AnimationHandler.DefaultProperty(
+                    ModelState.get("grow_sharpen"), // ModelState
+                    "grow_sharpen", // 애니메이션 이름
+                    0.0, // lerpIn
+                    0.0, // lerpOut
+                    1.0 // speed
+            );
+            handler.playAnimation("animation.grow_sharpen", 0.0, 0.0, 1.0, true);
+
         } catch (Exception ex) {
             // 크리스탈 실패해도 스킬은 계속 진행
             if (holderRef[0] != null)
@@ -81,6 +96,10 @@ public class Skill_1 {
             new BukkitRunnable() {
                 @Override
                 public void run() {
+                    // 타격 소리 (몹 유무와 무관하게 재생)
+                    if (!isLast) {
+                        player.playSound(base, Sound.BLOCK_BASALT_BREAK, 1f, 2f);
+                    }
                     Collection<Entity> nearby = base.getWorld()
                             .getNearbyEntities(base, AOE_SIZE, AOE_SIZE, AOE_SIZE);
                     int hit = 0;
@@ -101,7 +120,6 @@ public class Skill_1 {
                             target.setNoDamageTicks(0);
                             target.damage(dmg, player);
                             target.setVelocity(beforeVel);
-                            player.playSound(base, Sound.ENTITY_PLAYER_ATTACK_STRONG, 1f, 1.2f);
                         } else {
                             target.setNoDamageTicks(0);
                             target.damage(dmg, player);
@@ -117,8 +135,11 @@ public class Skill_1 {
                     }
 
                     if (isLast) {
-                        player.playSound(base, Sound.ENTITY_GENERIC_EXPLODE, 0.7f, 1.2f);
-                        player.playSound(base, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 0.5f, 1.5f);
+                        player.playSound(base, Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 10f, 1f);
+                        player.playSound(base, Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 10f, 1.2f);
+                        player.playSound(base, Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 10f, 1.4f);
+                        player.playSound(base, Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 10f, 1.6f);
+                        player.playSound(base, Sound.ENTITY_GENERIC_EXPLODE, 1.6f, 1.2f);
 
                         base.getWorld().spawnParticle(Particle.EXPLOSION_EMITTER,
                                 base.clone().add(0, -1, 0), 1, 0, 0, 0, 0);
