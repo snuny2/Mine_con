@@ -44,12 +44,14 @@ public class Skill_3 {
         Vector dir = eyeLoc.getDirection().normalize();
 
         // ItemDisplay 사용 - 정확히 눈높이에서 시작, 파티클 없음
+        Location spawnLoc = eyeLoc.clone();
+        spawnLoc.setPitch(0f);
         ItemDisplay proj = eyeLoc.getWorld().spawn(eyeLoc, ItemDisplay.class, d -> {
-            d.setBillboard(Display.Billboard.VERTICAL);
+            d.setBillboard(Display.Billboard.FIXED);
             d.setTransformation(new Transformation(
                     new Vector3f(0, 0, 0),
                     new AxisAngle4f(0, 0, 1, 0),
-                    new Vector3f(2f, 2f, 2f),
+                    new Vector3f(-2f, 1f, 2f),
                     new AxisAngle4f(0, 0, 1, 0)));
             ItemStack item = new ItemStack(Material.DIAMOND_SWORD);
             ItemMeta meta = item.getItemMeta();
