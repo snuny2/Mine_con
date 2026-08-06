@@ -13,23 +13,23 @@ public class CustomSkillPlugin extends JavaPlugin {
     private GaugeManager gaugeManager;
 
     // custom_model_data 문자열
-    public static final String ITEM_MODEL_STRING = "sonetto";
-    public static final String PROJ_1_MODEL = "projectile_1"; // 투사체1 모델
-    public static final String PROJ_2_MODEL = "projectile_2"; // 투사체2 모델
+    public static final String ITEM_MODEL_STRING  = "sonetto";
+    public static final String PROJ_1_MODEL       = "projectile_1"; // 투사체1 모델
+    public static final String PROJ_2_MODEL       = "projectile_2"; // 투사체2 모델
 
     // 액션바 유니코드 (게이지/휘두르기용)
     public static final String SWING_CHAR = "\uE202";
 
     @Override
     public void onEnable() {
-        instance = this;
+        instance        = this;
         cooldownManager = new CooldownManager();
-        gaugeManager = new GaugeManager(this);
+        gaugeManager    = new GaugeManager(this);
 
         getServer().getPluginManager()
-                .registerEvents(new SkillListener(this), this);
+            .registerEvents(new SkillListener(this), this);
         getCommand("skilltest")
-                .setExecutor(new DebugCommand(this));
+            .setExecutor(new DebugCommand(this));
 
         getLogger().info("CustomSkillItem 활성화!");
     }
@@ -40,15 +40,7 @@ public class CustomSkillPlugin extends JavaPlugin {
         getLogger().info("CustomSkillItem 비활성화!");
     }
 
-    public static CustomSkillPlugin getInstance() {
-        return instance;
-    }
-
-    public CooldownManager getCooldownManager() {
-        return cooldownManager;
-    }
-
-    public GaugeManager getGaugeManager() {
-        return gaugeManager;
-    }
+    public static CustomSkillPlugin getInstance() { return instance; }
+    public CooldownManager getCooldownManager()   { return cooldownManager; }
+    public GaugeManager    getGaugeManager()      { return gaugeManager; }
 }

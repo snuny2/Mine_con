@@ -36,32 +36,27 @@ public class SkillListener implements Listener {
     // ── 빈 공간/블록 클릭 ─────────────────────────────────
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
-        if (e.getHand() != EquipmentSlot.HAND)
-            return;
+        if (e.getHand() != EquipmentSlot.HAND) return;
         Player player = e.getPlayer();
-        if (!isCustomItem(player.getInventory().getItemInMainHand()))
-            return;
+        if (!isCustomItem(player.getInventory().getItemInMainHand())) return;
 
-        boolean sneak = player.isSneaking();
+        boolean sneak      = player.isSneaking();
         boolean rightClick = e.getAction() == Action.RIGHT_CLICK_AIR
-                || e.getAction() == Action.RIGHT_CLICK_BLOCK;
-        boolean leftClick = e.getAction() == Action.LEFT_CLICK_AIR
-                || e.getAction() == Action.LEFT_CLICK_BLOCK;
+                          || e.getAction() == Action.RIGHT_CLICK_BLOCK;
+        boolean leftClick  = e.getAction() == Action.LEFT_CLICK_AIR
+                          || e.getAction() == Action.LEFT_CLICK_BLOCK;
 
         // 우클릭 → 원거리
         if (!sneak && rightClick) {
-            if (cdm.isOnCooldown(player, Skill.GAUGE))
-                return;
+            if (cdm.isOnCooldown(player, Skill.GAUGE)) return;
             e.setCancelled(true);
-            if (!gm.isCharging(player))
-                gm.startCharging(player);
+            if (!gm.isCharging(player)) gm.startCharging(player);
             return;
         }
 
         // 쉬프트 + 우클릭 → 버프
         if (sneak && rightClick) {
-            if (cdm.isOnCooldown(player, Skill.BUFF))
-                return;
+            if (cdm.isOnCooldown(player, Skill.BUFF)) return;
             e.setCancelled(true);
             Skill_2.cast(player, plugin);
             cdm.setCooldown(player, Skill.BUFF, CooldownManager.BUFF_CD);
@@ -70,8 +65,7 @@ public class SkillListener implements Listener {
 
         // 쉬프트 + 좌클릭 → 광역
         if (sneak && leftClick) {
-            if (cdm.isOnCooldown(player, Skill.AOE))
-                return;
+            if (cdm.isOnCooldown(player, Skill.AOE)) return;
             e.setCancelled(true);
             Skill_1.cast(player, plugin);
             cdm.setCooldown(player, Skill.AOE, CooldownManager.AOE_CD);
@@ -82,38 +76,30 @@ public class SkillListener implements Listener {
     // ── 엔티티 우클릭 ─────────────────────────────────────
     @EventHandler
     public void onInteractEntity(PlayerInteractEntityEvent e) {
-        if (e.getHand() != EquipmentSlot.HAND)
-            return;
+        if (e.getHand() != EquipmentSlot.HAND) return;
         Player player = e.getPlayer();
-        if (!isCustomItem(player.getInventory().getItemInMainHand()))
-            return;
+        if (!isCustomItem(player.getInventory().getItemInMainHand())) return;
 
         if (player.isSneaking()) {
-            if (cdm.isOnCooldown(player, Skill.BUFF))
-                return;
+            if (cdm.isOnCooldown(player, Skill.BUFF)) return;
             e.setCancelled(true);
             Skill_2.cast(player, plugin);
             cdm.setCooldown(player, Skill.BUFF, CooldownManager.BUFF_CD);
         } else {
-            if (cdm.isOnCooldown(player, Skill.GAUGE))
-                return;
+            if (cdm.isOnCooldown(player, Skill.GAUGE)) return;
             e.setCancelled(true);
-            if (!gm.isCharging(player))
-                gm.startCharging(player);
+            if (!gm.isCharging(player)) gm.startCharging(player);
         }
     }
 
     // ── 엔티티 좌클릭 (때리기) ────────────────────────────
     @EventHandler
     public void onDamageEntity(EntityDamageByEntityEvent e) {
-        if (!(e.getDamager() instanceof Player player))
-            return;
-        if (!isCustomItem(player.getInventory().getItemInMainHand()))
-            return;
+        if (!(e.getDamager() instanceof Player player)) return;
+        if (!isCustomItem(player.getInventory().getItemInMainHand())) return;
 
         if (player.isSneaking()) {
-            if (cdm.isOnCooldown(player, Skill.AOE))
-                return;
+            if (cdm.isOnCooldown(player, Skill.AOE)) return;
             e.setCancelled(true);
             Skill_1.cast(player, plugin);
             cdm.setCooldown(player, Skill.AOE, CooldownManager.AOE_CD);
@@ -122,16 +108,14 @@ public class SkillListener implements Listener {
 
     private void sendCooldownMsg(Player player, String skill, double sec) {
         player.sendMessage(
-                Component.text(skill + " 쿨타임: ").color(NamedTextColor.RED)
-                        .append(Component.text(String.format("%.1f", sec) + "초")
-                                .color(NamedTextColor.YELLOW)));
+            Component.text(skill + " 쿨타임: ").color(NamedTextColor.RED)
+                .append(Component.text(String.format("%.1f", sec) + "초")
+                    .color(NamedTextColor.YELLOW)));
     }
 
     private boolean isCustomItem(ItemStack item) {
-        if (item == null || item.getType() == Material.AIR)
-            return false;
-        if (!item.hasItemMeta())
-            return false;
+        if (item == null || item.getType() == Material.AIR) return false;
+        if (!item.hasItemMeta()) return false;
         ItemMeta meta = item.getItemMeta();
         CustomModelDataComponent cmd = meta.getCustomModelDataComponent();
         return cmd.getStrings().contains(CustomSkillPlugin.ITEM_MODEL_STRING);
