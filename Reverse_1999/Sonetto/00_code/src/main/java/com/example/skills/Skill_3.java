@@ -51,7 +51,7 @@ public class Skill_3 {
             d.setTransformation(new Transformation(
                     new Vector3f(0, 0, 0),
                     new AxisAngle4f(0, 0, 1, 0),
-                    new Vector3f(-2f, 1f, 2f),
+                    new Vector3f(2f, 1f, 0.5f),
                     new AxisAngle4f(0, 0, 1, 0)));
             ItemStack item = new ItemStack(Material.DIAMOND_SWORD);
             ItemMeta meta = item.getItemMeta();
