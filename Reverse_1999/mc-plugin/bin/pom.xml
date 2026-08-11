@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>customskill</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+  <properties>
+    <java.version>21</java.version>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <repositories>
+    <!-- Paper API 저장소 -->
+    <repository>
+      <id>papermc</id>
+      <url>https://repo.papermc.io/repository/maven-public/</url>
+    </repository>
+    <repository>
+      <id>lumine</id>
+      <url>https://mvn.lumine.io/repository/maven-public/</url>
+    </repository>
+  </repositories>
+  <dependencies>
+    <!-- Paper API (Adventure API 포함 - net.kyori.adventure.* 사용 가능) -->
+    <dependency>
+      <groupId>io.papermc.paper</groupId>
+      <artifactId>paper-api</artifactId>
+      <version>1.21.4-R0.1-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.ticxo.modelengine</groupId>
+      <artifactId>ModelEngine</artifactId>
+      <version>R4.1.0</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/libs/ModelEngine-R4.1.0.jar</systemPath>
+    </dependency>
+  </dependencies>
+  <build>
+    <!-- 메인 소스는 00_Sonetto. 추가 캐릭터는 아래 build-helper에 등록 -->
+    <sourceDirectory>../00_Sonetto/00_code/src/main/java</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>../00_Sonetto/00_code/src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+      <!-- 캐릭터 추가 시 resources도 여기에 추가
+      <resource>
+        <directory>../01_다른캐릭터/00_code/src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+      -->
+    </resources>
+    <plugins>
+      <!-- 여러 캐릭터 소스 폴더를 컴파일에 추가 -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>3.5.0</version>
+        <executions>
+          <execution>
+            <id>add-character-sources</id>
+            <phase>generate-sources</phase>
+            <goals><goal>add-source</goal></goals>
+            <configuration>
+              <sources>
+                <!-- 캐릭터 추가 시 이 안에 <source> 한 줄씩 추가 -->
+                <!-- 예시:
+                <source>../01_다른캐릭터/00_code/src/main/java</source>
+                -->
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.5.0</version>
+        <configuration>
+          <createDependencyReducedPom>false</createDependencyReducedPom>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals><goal>shade</goal></goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
