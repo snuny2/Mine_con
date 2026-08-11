@@ -6,7 +6,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_00.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_00.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -15,7 +15,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_01.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_01.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -24,7 +24,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_02.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_02.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -33,7 +33,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_03.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_03.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -42,7 +42,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_04.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_04.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -51,7 +51,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_05.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_05.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -60,7 +60,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_06.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_06.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -69,7 +69,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_07.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_07.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -78,7 +78,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_08.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_08.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -87,7 +87,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_09.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_09.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -96,7 +96,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_10.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_10.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -105,7 +105,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_11.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_11.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -114,7 +114,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_12.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_12.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -123,7 +123,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_13.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_13.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -132,7 +132,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_14.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_14.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -141,7 +141,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_15.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_15.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -150,7 +150,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_16.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_16.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -159,7 +159,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_17.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_17.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -168,7 +168,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_18.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_18.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -177,7 +177,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_19.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_19.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -186,7 +186,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_20.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_20.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -195,7 +195,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_21.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_21.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -204,7 +204,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_22.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_22.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -213,7 +213,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_23.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_23.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -222,7 +222,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_24.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_24.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -231,7 +231,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_25.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_25.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -240,7 +240,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_26.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_26.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -249,7 +249,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_27.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_27.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -258,7 +258,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/gauge/gauge_28.png",
+      "file": "minecraft:gui/gauge/sonetto/gauge_28.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -267,7 +267,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/projectile_1.png",
+      "file": "minecraft:gui/skill/sonetto/projectile_1.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -276,7 +276,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/projectile_2.png",
+      "file": "minecraft:gui/skill/sonetto/projectile_2.png",
       "ascent": 20,
       "height": 48,
       "chars": [
@@ -285,7 +285,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/swing_overlay.png",
+      "file": "minecraft:gui/skill/sonetto/swing_overlay.png",
       "ascent": 80,
       "height": 160,
       "chars": [
@@ -294,7 +294,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_00.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_00.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -303,7 +303,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_01.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_01.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -312,7 +312,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_02.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_02.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -321,7 +321,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_03.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_03.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -330,7 +330,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_04.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_04.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -339,7 +339,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_05.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_05.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -348,7 +348,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_06.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_06.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -357,7 +357,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_07.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_07.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -366,7 +366,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_08.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_08.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -375,7 +375,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_09.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_09.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -384,7 +384,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_10.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_10.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -393,7 +393,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_11.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_11.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -402,7 +402,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_12.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_12.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -411,7 +411,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_13.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_13.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -420,7 +420,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_14.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_14.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -429,7 +429,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_15.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_15.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -438,7 +438,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_16.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_16.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -447,7 +447,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_17.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_17.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -456,7 +456,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_18.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_18.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -465,7 +465,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_19.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_19.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -474,7 +474,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_20.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_20.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -483,7 +483,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_beam/beam_21.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_beam/beam_21.png",
       "ascent": 100,
       "height": 200,
       "chars": [
@@ -492,7 +492,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_circle/circle_00.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_circle/circle_00.png",
       "ascent": 8,
       "height": 80,
       "chars": [
@@ -501,7 +501,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_circle/circle_01.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_circle/circle_01.png",
       "ascent": 8,
       "height": 80,
       "chars": [
@@ -510,7 +510,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_circle/circle_02.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_circle/circle_02.png",
       "ascent": 8,
       "height": 80,
       "chars": [
@@ -519,7 +519,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_circle/circle_03.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_circle/circle_03.png",
       "ascent": 8,
       "height": 80,
       "chars": [
@@ -528,7 +528,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_circle/circle_04.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_circle/circle_04.png",
       "ascent": 8,
       "height": 80,
       "chars": [
@@ -537,7 +537,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_circle/circle_05.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_circle/circle_05.png",
       "ascent": 8,
       "height": 80,
       "chars": [
@@ -546,7 +546,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_circle/circle_06.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_circle/circle_06.png",
       "ascent": 8,
       "height": 80,
       "chars": [
@@ -555,7 +555,7 @@
     },
     {
       "type": "bitmap",
-      "file": "minecraft:gui/skill/skill2_circle/circle_07.png",
+      "file": "minecraft:gui/skill/sonetto/skill2_circle/circle_07.png",
       "ascent": 8,
       "height": 80,
       "chars": [

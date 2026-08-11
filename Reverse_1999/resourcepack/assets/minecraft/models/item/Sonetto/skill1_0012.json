@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "minecraft:item/skill1/skill1_0012"
+    "layer0": "minecraft:item/sonetto/skill1/skill1_0012"
   }
 }
