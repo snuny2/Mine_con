@@ -7,7 +7,7 @@
         "when": "sonetto",
         "model": {
           "type": "minecraft:model",
-          "model": "minecraft:item/sonetto"
+          "model": "minecraft:item/sonetto/sonetto"
         }
       },
       {

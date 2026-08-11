@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "item/handheld",
 	"textures": {
-		"0": "item/sonetto", 
-		"particle": "item/sonetto"
+		"0": "item/sonetto/sonetto", 
+		"particle": "item/sonetto/sonetto"
 	},
 	"elements": [
 		{

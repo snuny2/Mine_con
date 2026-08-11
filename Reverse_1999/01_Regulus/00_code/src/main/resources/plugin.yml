@@ -1,0 +1,15 @@
+name: Reverse_1999
+version: 1.0.0
+main: com.example.customskill.CustomSkillPlugin
+api-version: "1.21"
+description: Custom skill item plugin
+
+commands:
+  skilltest:
+    description: 스킬 테스트 디버그 명령어
+    usage: /skilltest <reset|status|give|damage>
+    permission: skilltest.use
+
+permissions:
+  skilltest.use:
+    default: op
